@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Analog Clock</title>
+	<style type="text/css">
+
+		body{
+			box-sizing: border-box;
+			background-color: #caface
+		}
+		
+	.clock-container{
+			height: 460px;
+			width: 460px;
+			position: relative;
+			margin: auto;
+			margin-top: 5%;
+			/*border: 1px solid #000000;*/
+		}
+	.clock-dial{
+			height: 400px;
+			width: 400px;
+			border: 30px groove #65a0bf;
+			border-radius: 50%;
+			position: absolute;
+			z-index: 1;
+			background-color: #acd3e8;
+			text-align: center;
+	}
+	.clock-center{
+			font-size: 100px;
+			font-weight: bold;
+			margin-top: 140px;
+	}
+	.time{
+			font-size: 36px;
+			font-weight: bolder;
+			font-style: italic;
+			position: absolute;
+			z-index: 2;
+	}
+	.time-12{
+			top: 30px;
+			left: 47%;
+	}
+	.time-6{
+			bottom: 30px;
+			left: 47%;
+	}
+	.time-9{
+		top: 47%;
+		left: 45px;
+	}
+	.time-3{
+		top: 47%;
+		right: 45px;
+	}
+	.sec-hand{
+		height: 165px;
+		position: absolute;
+		z-index: 3;
+		border: 1px solid #000;
+		top: 70px;
+		left: 229px;
+		transform-origin: bottom;
+	}
+	.min-hand{
+		height: 140px;
+		position: absolute;
+		z-index: 4;
+		border: 2px solid #000;
+		top: 85px;
+		left: 229px;
+		transform-origin: bottom;
+	}
+	.hrs-hand{
+		height: 120px;
+		position: absolute;
+		z-index: 5;
+		border: 3px solid #000;
+		top: 105px;
+		left: 229px;
+		transform-origin: bottom;
+	}
+	@media screen and (max-width:1200px)
+	{
+			.clock-dial
+		{
+			background-color:#2747e6;
+			border-radius: 50%;
+		}
+			body{
+			background-color: #f7fc90;
+		}
+	}
+	@media screen and (max-width:800px)
+	{
+			.clock-dial
+			{
+				background-color: #0299bf;
+				border-radius: 25%;
+			}
+			body{
+				background-color: #f7b77e
+			}
+	}
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="clock-container">
+		<div class="clock-dial">
+			<div class="clock-center">•</div>
+		</div>
+
+		<div class="time time-12">12</div>
+		<div class="time time-6">6</div>
+		<div class="time time-9">9</div>
+		<div class="time time-3">3</div>
+
+		<div class="sec-hand" id="sec"></div>
+		<div class="min-hand" id="min"></div>
+		<div class="hrs-hand" id="hrs"></div>
+</div>
+
+<script type="text/javascript">
+	
+	getTime();
+	function getTime()
+	{
+		setInterval(function(){
+			var currentTime=new Date();
+			var hour=currentTime.getHours();
+			var minute=currentTime.getMinutes();
+			var second=currentTime.getSeconds();
+
+			var shAngle = second*6;
+			document.getElementById('sec').style.transform = "rotate("+ shAngle +"deg)";
+
+			var mhAngle = minute*6;
+			document.getElementById('min').style.transform = "rotate("+ mhAngle +"deg)";
+
+			if(hour>=12 && hour<=23)
+			{
+				hour=hour-12;
+			}
+
+			var hhAngle = hour*30;
+			hhAngle = hhAngle + (minute*0.5);
+			document.getElementById('hrs').style.transform = "rotate("+ hhAngle +"deg)";
+
+
+		},1000);
+	}
+
+
+
+
+</script>
+</body>
+</html>
